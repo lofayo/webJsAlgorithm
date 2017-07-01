@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>getMaxProfit</title>
+</head>
+<body>
+	<script>
+		/*
+			获取数组元素最大差距原理：
+									先定义最大数、最小数
+									遍历数组，将数组中较大者赋给maxValue
+									遍历数组，将数组中较小者赋给minValue
+		 */
+		function getMaxProfit(arr) {
+			//先定义最大数、最小数
+			var maxValue = arr[0];
+			var minValue = arr[0];
+			for(var i in arr) {
+				//遍历比较：将数组中较大者赋给maxValue
+				if (arr[i] > maxValue) {
+					maxValue = arr[i];
+				}
+				//遍历比较：将数组中较小者赋给minValue
+				if (arr[i] < minValue) {
+					minValue = arr[i];
+				}
+			}
+			//返回差距
+			return maxValue - minValue;
+		}
+		var arr = [-10,9,2,11];
+		var profit = getMaxProfit(arr);
+		console.log(profit);
+	</script>
+</body>
+</html>

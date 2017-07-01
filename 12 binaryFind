@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>binaryFind</title>
+</head>
+<body>
+	<script>
+	/*
+		二分法原理：
+					二分法适用于有序数组；
+					从小到大搜寻，每次将范围缩小一半；
+					直到找到为止，没找到就退出
+	 */
+		function binaryFind(arr, data) {
+			//先定义两个索引，从最低到最高
+			var low = 0;
+			var high = arr.length - 1;
+			//从小到大循环一次，一定要保证最小索引小于等于最大索引，否则“死循环”，找到就退出
+			while (low <= high) {
+				//每次都重新计算中间位置
+				var mid = parseInt((low + high) / 2);
+				if (arr[mid] == data) {
+					return "Finded data index:" + mid;
+				} else if(arr[mid] > data) {
+					high = mid -1;
+				} else {
+					low = mid +1;
+				}
+			}
+			//如果整个都没找到，那就是没有
+			return "No finding data ";
+		}
+		var arr = [1,2,3,4,5,6];
+		var result = binaryFind(arr,5.5);
+		console.log(result);
+	</script>
+</body>
+</html>
