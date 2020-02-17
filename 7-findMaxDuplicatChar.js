@@ -1,0 +1,37 @@
+/**
+ * 原理：
+ * 用一个jSON对象存储每个字符出现的次数；
+ * 遍历这个JSON对象，返回出现最多字符及次数
+ * @param {*} str 
+ */
+function findMaxDuplicateChar(str) {
+	//字符串不存在，或个数为1，直接返回
+	if (!str || str.length === 1) return str;
+	//一个JSON对象来存放每个字符出现的次数
+	var countCharNum = {};
+	//对字符串遍历，用JSON对象统计每个字符次数
+	for(var i = 0; i < str.length; i++) {
+		if (!countCharNum[str.charAt(i)]) {
+			// 第一次，创建json中对应变量：1
+			countCharNum[str.charAt(i)] = 1;
+		} else {
+			// 第二次，直接次数+1
+			countCharNum[str.charAt(i)] += 1;
+		}
+	}
+	//对countCharNum遍历，找出次数最多的字符及次数
+	//下面这个思想很重要：先假设一个数字最大，再和其它数比较，比它大的就赋值给它
+	var maxValue = 0;
+	var maxValueChar = '';
+	for(var j in countCharNum) {
+		if(countCharNum[j] > maxValue) {
+			maxValue = countCharNum[j];
+			maxValueChar = j;
+		}
+	}
+	return 'maxValue:' + maxValue + ',' + 'maxValueChar:' + maxValueChar;
+}
+
+var str = "asfsjddfkasldfjfldssfsfsfsfsfwirweirouwirfdkslfjsdlfbanxxfkjswoeruwer";
+var result = findMaxDuplicateChar(str);
+console.log(result);
