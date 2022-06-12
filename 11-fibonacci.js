@@ -51,7 +51,7 @@ function getFibonacciVariable(len){
 		t = a + b;
 		a = b;
 		b = t;
-		arr.push(b);
+		arr.push(t);
 	}
 	return arr;
 }

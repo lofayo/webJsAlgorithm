@@ -1,13 +1,15 @@
 /*
-	非递归的阶乘原理：完全按照数学阶乘公式来计算；但需考虑特殊情况
-	*/
-
-
-/**
- * 数学阶乘计算
- * @param {*} n 
+ * @Author: fangyong luo
+ * @Date: 2020-02-03 08:02:01
+ * @LastEditTime: 2020-05-12 07:11:26
+ * @Description: file content
  */
-function factorial(n) {
+/**
+ * @description: 纯数学方法式地计算阶乘
+ * @param {n: number} 
+ * @return: 阶乘结果
+ */
+function factorialMath(n) {
 	//先判断负数、0、1情况
 	if (n < 0) return -1;
 	if (n == 0 || n == 1) return 1;
@@ -20,11 +22,6 @@ function factorial(n) {
 	//返回阶乘结果
 	return result;
 }
-
-/*
-	
-	*/
-
 /**
  * 递归式阶乘原理：
  * 所谓的递归，就是算这一次的结果需要知道前一次的结果，
@@ -39,11 +36,9 @@ function factorial(n) {
 /**
  * 递归方式计算：同类型的计算方式，用递归实现
  */
-function factorial2 (n) {
-	// 一个函数肯定只能有一个"return"
+function factorialRecursion (n) {
 	if (n < 0) return -1;
 	if ( n == 0 || n == 1) return 1;
 	// return n + '>' + arguments.callee(n-1);
-	return n * factorial2(n-1);
+	return n * factorialRecursion(n-1);
 }
-console.log ( factorial2(4) );

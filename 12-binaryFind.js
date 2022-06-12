@@ -1,5 +1,5 @@
 /**
- * 原理：
+ * 原理：时间复杂度2^x = n => x = log(2, n);
  * 在有序数组中搜索具体值。从小到大搜寻，每次将范围缩小一半；直到找到为止，没找到就退出
  * @param {*} arr 
  * @param {*} data 
@@ -14,9 +14,9 @@ function binaryFind(arr, value) {
 	var mid = parseInt((low + high) / 2);
 	while (low <= high) {
 		//每次都重新计算中间位置
-		if (arr[mid] === value) {
+		if (value === arr[mid]) {
 			return "Finded data index:" + mid;
-		} else if(arr[mid] > value) {
+		} else if(value < arr[mid]) {
 			high = mid -1;
 		} else {
 			low = mid +1;

@@ -1,14 +1,14 @@
-/**
- * 原理：
- * 先定义最大数、最小数
- * 遍历数组，将数组中较大者赋给maxValue
- * 遍历数组，将数组中较小者赋给minValue
+/*
+ * @Author: fangyong luo
+ * @Date: 2020-02-03 08:02:01
+ * @LastEditTime: 2020-05-12 07:04:44
+ * @Description: 这个本身就限制了数组里每个必须都是数字才可如此操作，若是其它就会错误。数组里本身就可包含各种类型数据，太任性了，后续使用必定付出代价
  */
-
- /**
- * 计算数组中元素最大差距，先循环遍历找到最大最小
- * @param {*} arr 
- */	
+/**
+ * @description: 思想：先将第一个数都定为最大数和最小数，遍历数组，将数组中较大者赋给maxValue， 将数组中较小者赋给minValue
+ * @param {arr: array} 
+ * @return: distance
+ */
 function getMaxProfit(arr) {
 	if(!Array.isArray(arr) || arr.length === 0) return;
 	//先定义最大数、最小数
@@ -27,16 +27,12 @@ function getMaxProfit(arr) {
 	//返回差距
 	return maxValue - minValue;
 }
-var arr = [-10,9,2,11];
-var profit = getMaxProfit(arr);
-console.log(profit);
-
 /**
- * 计算数组中数值最大差距，仅限数组元素为数字的
- * @param {*} arr 
+ * @description: 借助已有API的使用，结合函数本身方法
+ * @param {type} 
+ * @return: 
  */
 const getMaxGap = (arr) => {
 	if(!Array.isArray(arr) || arr.length ===0) return;
 	return Math.max.apply(null, arr) - Math.min.apply(null,arr);
 }
-console.log(getMaxGap(arr));
