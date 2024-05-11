@@ -10,8 +10,9 @@
 
  const randomArr = require('./randomArr.js');
 
-	// 保证函数是纯函数，没副作用
-function bubbleSort([...arr]) {
+function bubbleSort(arr) {
+	// 因为内部有副作用操作，得复制一份再操作
+	arr = [...arr];
 	// 外层循环，控制次数
 	for (var i = 0; i < arr.length; i++) {
 		//内层循环，控制的是每次从“未排序好”的元素里找出最大者
@@ -25,7 +26,6 @@ function bubbleSort([...arr]) {
 			}
 		}
 	}
-	//对于传入了参数的函数，肯定要有结果的产出
 	return arr;
 }
 

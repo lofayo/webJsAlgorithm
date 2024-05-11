@@ -20,6 +20,7 @@ function palindromeReverse(str) {
 function palindromeCompare(str) {
 	var i = 0;
 	var j = str.length - 1;
+	// 这样操作是简单，我一开始还以为要用总长度减去i
 	for(i, j; i <= j; i++, j--) {
 		if (str[i] !== str[j]) return "no palindrome";
 	}
