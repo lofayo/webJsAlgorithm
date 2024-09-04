@@ -20,7 +20,7 @@ function palindromeReverse(str) {
 function palindromeCompare(str) {
 	var i = 0;
 	var j = str.length - 1;
-	// 这样操作是简单，我一开始还以为要用总长度减去i
+	// 这样操作是简单，我一开始还以为要用总长度减去i（可以呀，可以这样，这两个指标的和本来就是个定值。用一个索引指标依次去找元素）
 	for(i, j; i <= j; i++, j--) {
 		if (str[i] !== str[j]) return "no palindrome";
 	}
@@ -32,6 +32,7 @@ console.log(strplalindrome);
 
 /**
  * 递归实现比较，每次比较的都是最前最后的，如此递归
+ * 递归的思想就是：一个元素我能处理，那么两个元素我也能处理，那么三个元素我也能处理......
  * @param {*} str 
  */
 function palindromeRecursion(str) {
@@ -43,7 +44,7 @@ function palindromeRecursion(str) {
 	if(lowRegStr.length <= 1) return "palindrome";
 	//如果首尾不相等，直接返回
 	var endIndex = str.length - 1;
-	if(lowRegStr[0] != lowRegStr[endIndex]) return "no palindrome";
+	if(lowRegStr[0] !== lowRegStr[endIndex]) return "no palindrome";
 	//牛逼的无限递归：取出字符串的第二位至倒数第二位的字符串
 	var newStr = lowRegStr.slice(1,endIndex);
 	return palindromeRecursion(newStr);

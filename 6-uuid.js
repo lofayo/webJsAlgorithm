@@ -30,4 +30,6 @@ class UUID {
 		return this.get(32);
 	}
 }
+
+console.log(UUID.get32());
 module.exports = UUID;

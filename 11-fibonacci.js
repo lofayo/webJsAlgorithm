@@ -48,6 +48,7 @@ function getFibonacciVariable(len){
 	var t, a = 0, b = 1;
 	var arr = [0, 1];
 	while (arr.length < len) {
+		// 相当于两个索引指标，一直往后移动
 		t = a + b;
 		a = b;
 		b = t;
