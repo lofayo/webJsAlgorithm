@@ -11,21 +11,21 @@
  * 排序方式：原地（in place）
  * 空间复杂度：O(1)
  */
-const randomArr = require('./randomArr.js');
+const randomArr = require('../randomArr.js');
 
 function selectSort(arr = randomArr) {
     arr = [...arr];
     const len = arr.length;
     for(let i = 0; i < len - 1; i++) {
-        let minIndex = i;
+        let minValueIndex = i;
         for(let j = i + 1; j < len; j++) {
-            if(arr[j] < arr[minIndex]) {
-                minIndex = j;
+            if(arr[j] < arr[minValueIndex]) {
+                minValueIndex = j;
             }
         }
         // 交换元素位置，两个索引不同才需要交换
-        if(minIndex !== i) {
-            [arr[i], arr[minIndex]] = [arr[minIndex], arr[i]]
+        if(minValueIndex !== i) {
+            [arr[i], arr[minValueIndex]] = [arr[minValueIndex], arr[i]];
         }
     }
     return arr;

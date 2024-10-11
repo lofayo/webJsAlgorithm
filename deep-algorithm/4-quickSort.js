@@ -1,3 +1,8 @@
+/*
+ * @Author: fangyong luo
+ * @Date: 2020-02-03 08:02:01
+ * @Description: file content
+ */
 /**
  * 快速排序原理：
  * 1、从数组中选一个数做基准；
@@ -15,16 +20,11 @@
 function quickSort(arr){ 
 	//先判断数组元素个数，不至于数组只有一个元素还在递归
 	if(!arr) return [];
-	if (arr.length <= 1) return arr;	
-	// 确保没副作用
-	arr = [...arr];
-	//取得“基准索引”
-	var pivotIndex = Math.floor(arr.length / 2);
-	//取得“基准”，并从原数组删除
-	var pivot = arr.splice(pivotIndex, 1)[0];
+	if (arr.length <= 1) return arr;
+	var pivot = arr[0];
 	//以基准为界限，分成小于基准部分，和大于基准部分
 	var left = [], right = [];
-	for(var i = 0; i < arr.length; i++) {
+	for(var i = 1; i < arr.length; i++) {
 		if(arr[i] < pivot) {
 			left.push(arr[i]);
 		}else {
@@ -37,3 +37,33 @@ function quickSort(arr){
 var arr = [21,2,34,11,19,8];
 var arrSort = quickSort(arr);
 console.log(arrSort);
+
+// 官方给出的快速排序，它能说明为什么快速排序是不稳定的
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left >= right) return arr;
+
+    // 选择基准并进行分区操作
+    const pivotIndex = partition(arr, left, right);
+    
+    // 对左侧部分和右侧部分递归排序
+    quickSort(arr, left, pivotIndex - 1);
+    quickSort(arr, pivotIndex + 1, right);
+    
+    return arr;
+}
+
+// 分区函数
+function partition(arr, left, right) {
+    const pivot = arr[right];  // 选择最右侧的元素作为基准
+    let i = left;
+
+    for (let j = left; j < right; j++) {
+        if (arr[j] < pivot) {
+            [arr[i], arr[j]] = [arr[j], arr[i]];  // 交换较小的元素到左侧
+            i++;
+        }
+    }
+    // 最后交换基准到正确的位置，这个地方会导致同样元素前后位置发生改变，因此是不稳定的
+    [arr[i], arr[right]] = [arr[right], arr[i]];
+    return i;  // 返回基准的最终位置
+}

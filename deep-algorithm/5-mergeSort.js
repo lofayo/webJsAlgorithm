@@ -17,33 +17,33 @@
  * @param {*} right 
  */
 function mergeSort(left, right) {
-	var il = 0;
-	var ir = 0;
+	var leftIndex = 0;
+	var rightIndex = 0;
 	var result = [];
 	//两个索引角标都比数组长度小，执行如下判断：每次比较，将最小的数push到数组中
-	while (il < left.length && ir <right.length) {
+	while (leftIndex < left.length && rightIndex < right.length) {
 		/*
 		这个地方其实挺牛的:
 		left[0] < right[0];
 		result.push(left[0]);
 		再用left[1]和right[0]比较，看谁小
 		*/
-		if (left[il] < right[ir]) {
-			result.push(left[il]);	 
-			il++;
+		if (left[leftIndex] < right[rightIndex]) {
+			result.push(left[leftIndex]);	 
+			leftIndex++;
 		} else {
-			result.push(right[ir]);
-			ir++;
+			result.push(right[rightIndex]);
+			rightIndex++;
 		}
 	}
 	//一旦索引角标有超出了，执行如下判断：将另一个数组“剩余内容”全数追加
-	while (left[il]) {
-		result.push(left[il]);
-		il++;
+	while (leftIndex < left.length) {
+		result.push(left[leftIndex]);
+		leftIndex++;
 	}
-	while (right[ir]) {
-		result.push(right[ir]);
-		ir++;
+	while (rightIndex < right.length) {
+		result.push(right[rightIndex]);
+		rightIndex++;
 	}
 	return result;
 }
@@ -58,8 +58,8 @@ function divideMerge(arr) {
 	if (arr.length < 2) { return arr; }
 		//每次将数组从中间位置分成两半
 	var middleIndex = Math.floor(arr.length / 2);
-	var left = arr.splice(0, middleIndex);
-	var right = arr;
+	var left = arr.slice(0, middleIndex);
+	var right = arr.slice(middleIndex);
 		//合并函数的调用，无限的递归。递归的思想太重要了
 	return mergeSort(divideMerge(left), divideMerge(right));
 }

@@ -13,20 +13,27 @@
  * 空间复杂度：O(1)
  */
 
- const randomArr = require('./randomArr.js');
+ const randomArr = require('../randomArr.js');
 
 function bubbleSort(arr = randomArr) {
 	// 因为内部有副作用操作，得复制一份再操作
 	arr = [...arr];
 	// 外层循环，控制次数
 	for (var i = 0; i < arr.length; i++) {
+		// 标记是否有交换顺序，如果是当前部分已经有序，没必要再做下一次循环
+		let hasSwitched = false;
+
 		//内层循环，控制的是每次从“未排序好”的元素里找出最大者
-		for (var j = 0; j < arr.length - i; j++) {
-			//排好了i个数后，内部循环只要循环前面就好，所以j<arr.lenght-i
+		for (var j = 0; j < arr.length - i - 1; j++) {
+			//排好了i个数后，内部循环只要循环前面就好，所以j<arr.length-i-1
 			if (arr[j] > arr[j + 1]) {
 				// 这里可以改变排序的顺序
 				[arr[j+1], arr[j]] = [arr[j], arr[j+1]];
+				hasSwitched = true;
 			}
+		}
+		if(!hasSwitched) {
+			break;
 		}
 	}
 	return arr;
