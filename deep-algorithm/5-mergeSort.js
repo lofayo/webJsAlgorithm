@@ -52,15 +52,15 @@ function mergeSort(left, right) {
  * 将数组无限细分，细分，合并，细分，合并
  * @param {*} arr 
  */
-	//将数组“无限细分两半”，并将每一半都调用“合并排序”函数	
+//将数组“无限细分两半”，并将每一半都调用“合并排序”函数	
 function divideMerge(arr) {
-		//判断数组元素个数，小于2就没必要执行，就不会调用merge函数
+	//判断数组元素个数，小于2就没必要执行，就不会调用merge函数
 	if (arr.length < 2) { return arr; }
-		//每次将数组从中间位置分成两半
+	//每次将数组从中间位置分成两半
 	var middleIndex = Math.floor(arr.length / 2);
 	var left = arr.slice(0, middleIndex);
 	var right = arr.slice(middleIndex);
-		//合并函数的调用，无限的递归。递归的思想太重要了
+	//合并函数的调用，无限的递归。递归的思想太重要了
 	return mergeSort(divideMerge(left), divideMerge(right));
 }
 

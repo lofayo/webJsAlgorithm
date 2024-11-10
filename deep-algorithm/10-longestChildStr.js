@@ -4,27 +4,36 @@
  * @Description: 寻求最长公共子串的问题
  */
 
-const data = {str1: 'fisht', str2: 'foshj'};
+function longestCommonSubstring(s1, s2) {
+    const len1 = s1.length;
+    const len2 = s2.length;
+    
+    // 初始化二维 dp 数组并记录最大长度和结束位置
+    const dp = Array.from({ length: len1 + 1 }, () => Array(len2 + 1).fill(0));
+    console.dir(dp, {depth: null, color: true});
+    let maxLength = 0;
+    let endIndex = 0; // 记录最长公共子串的结束位置
 
-function getLongestChildStr({str1, str2} = data) {
-    let dp = {};
-    for(let i = 0; i < str1.length; i++) {
-        let key = '';
-        const temp = {};
-        for(let j = 0; j < str2.length; j++) {
-            key += str2[j];
-            // 不相等时赋值为0
-            if(str1[i] !== str2[j]) {
-                temp[key] = 0;
-                continue;
+    for (let i = 1; i <= len1; i++) {
+        for (let j = 1; j <= len2; j++) {
+            if (s1[i - 1] === s2[j - 1]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+
+                // 更新最大长度和结束位置
+                if (dp[i][j] > maxLength) {
+                    maxLength = dp[i][j];
+                    endIndex = i; // 记录当前子串的结束位置
+                }
             }
-            const prevKey = key.slice(0, -1);
-            temp[key] = (dp[prevKey] || 0) + 1;
         }
-        dp = {...dp, ...temp};
-        console.log(str1[i], dp);
     }
-    return dp;
+
+    // 使用 endIndex 和 maxLength 截取最长公共子串
+    const lcs = s1.substring(endIndex - maxLength, endIndex);
+    return lcs;
 }
 
-console.log(getLongestChildStr())
+// 测试
+const str1 = "abcdef";
+const str2 = "zcdemf";
+console.log(longestCommonSubstring(str1, str2)); // 输出：cde
